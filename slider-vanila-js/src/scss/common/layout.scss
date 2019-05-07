@@ -1,3 +1,23 @@
-body {
-	color: powderblue;
+:root {
+	height: 100%;
+	body {
+		height: 100%;
+		& > .wrapper {
+			display: flex;
+			flex-direction: column;
+		}
+}
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html, body, ul, p, h1, h2, h3, h4, h5 {
+	margin: 0;
+	padding: 0;
+}
+
+ul {
+	list-style: none;
 }

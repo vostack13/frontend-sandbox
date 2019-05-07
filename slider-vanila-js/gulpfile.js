@@ -101,6 +101,7 @@ exports.templates = templates;
 exports.styles = styles;
 exports.clean = clean;
 exports.images = images;
+exports.watch = watch;
 
 // режим разработки
 gulp.task('default', gulp.series(
