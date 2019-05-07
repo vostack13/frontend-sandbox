@@ -89,7 +89,7 @@ function server() {
 	browserSync.init({
 		server: paths.root,
 		notify: false,
-		open: true,
+		open: false,
 		cors: true,
 		ui: false
 	});
@@ -101,14 +101,12 @@ exports.templates = templates;
 exports.styles = styles;
 exports.clean = clean;
 exports.images = images;
-// exports.watch = watch;
 
 // режим разработки
 gulp.task('default', gulp.series(
 	clean,
 	gulp.parallel(templates, styles, scripts, images),
 	gulp.parallel(watch, server)
-	// 'watch',
 
 ))
 
