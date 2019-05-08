@@ -5,6 +5,6 @@ include ../helpers/_images
 	.container#general-slider__container
 		ul.list
 			each image in images
-				li.item#general-slider__item
+				li.general-slider__item#general-slider__item
 					.content(style=`background-image: url(${image.src})`)
 	button.btn__next Вперед

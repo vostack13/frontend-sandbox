@@ -1,0 +1,14 @@
+/* Common */
+/* @import 'common/fonts'; */
+/* @import 'common/colors'; */
+@import 'common/layout';
+
+/* Components */
+@import 'components/slider';
+
+/* Pages */
+@import 'pages/index';
+/* @import 'blocks/socials/socials'; */
+/* @import 'blocks/Home/home__hero'; */
+/* @import 'blocks/Home/home__problems'; */
+/* @import 'blocks/Home/home__solution.scss'; */

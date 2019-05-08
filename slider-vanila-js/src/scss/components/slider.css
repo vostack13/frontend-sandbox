@@ -1,6 +1,5 @@
 .general-slider {
 	width: 100%;
-	height: var(--height-container);
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -20,20 +19,19 @@
 		height: 100%;
 		z-index: 1;
 		& > .list {
-			--translate: translateX(0);
 			position: relative;
 			height: 100%;
 			display: flex;
-			transform: var(--translate);
-			transition-duration: 0.25s;
-			transition-timing-function: ease-in-out;
+			transform: translateX(0);
+			transition-duration: .5s;
+			transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 			transition-property: transform;
-			& > .item {
+			& > .general-slider__item {
 				flex-shrink: 0;
 				padding-left: 8px;
 				padding-right: 8px;
 				display: flex;
-				width: var(--width-item);
+				width: 25%;
 				& > .content {
 					flex-grow: 1;
 					height: 100%;

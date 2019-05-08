@@ -4,12 +4,17 @@ const del = require('del');
 const browserSync = require('browser-sync').create();
 
 //styles
-const sass = require('gulp-sass');
-const rename = require('gulp-rename');
-const sourcemaps = require('gulp-sourcemaps');
+const postcss = require('gulp-postcss');
+const postcssNesting = require('postcss-nesting');
+const postcssSelectorNot = require('postcss-selector-not');
+const postcssCustomProperties = require('postcss-custom-properties');
+const cssnano = require('cssnano');
+const autoprefixer = require('autoprefixer');
+// const sass = require('gulp-sass');
+// const rename = require('gulp-rename');
+// const sourcemaps = require('gulp-sourcemaps');
 
 // scripts
-// const gulpWebpack = require('webpack-stream');
 const uglify = require('gulp-uglify');
 const webpack = require('webpack-stream');
 const compiler = require('webpack');
@@ -48,12 +53,27 @@ function templates() {
 };
 
 // scss
+// function styles() {
+// 	return gulp.src('./src/scss/main.scss')
+// 		.pipe(sourcemaps.init())
+// 		.pipe(sass({outputStyle: 'compressed'}))
+// 		.pipe(sourcemaps.write())
+// 		.pipe(rename({suffix: '.min'}))
+// 		.pipe(gulp.dest(paths.styles.dest))
+// };
+
+// postcss
 function styles() {
-	return gulp.src('./src/scss/main.scss')
-		.pipe(sourcemaps.init())
-		.pipe(sass({outputStyle: 'compressed'}))
-		.pipe(sourcemaps.write())
-		.pipe(rename({suffix: '.min'}))
+	const plugins = [
+		postcssNesting(),
+		postcssSelectorNot(),
+		postcssCustomProperties(),
+		autoprefixer(),
+		cssnano(),
+	];
+
+	return gulp.src('./src/scss/main.css')
+		.pipe(postcss(plugins, { parser: false }))
 		.pipe(gulp.dest(paths.styles.dest))
 };
 

@@ -1,14 +1,16 @@
+require('@babel/polyfill');
+
 const slider = document.getElementById('general-slider');
 const sliderContainer = document.getElementById('general-slider__container');
-const sliderItem = document.getElementById('general-slider__item');
+const sliderItems = document.querySelectorAll('.general-slider__item');
 const buttonPrev = document.querySelector('.btn__prev');
 const buttonNext = document.querySelector('.btn__next');
 
+let maxPositionSlider = sliderContainer.firstElementChild.childElementCount;
 let transition = 0;
 let width = 0;
 let countViewItem = 0;
 let positionSlider = 0;
-let maxPositionSlider = sliderContainer.firstElementChild.childElementCount;
 let translate = 0;
 let posX1 = 0;
 let posX2 = 0;
@@ -26,30 +28,24 @@ const setWidthItem = () => {
 		countViewItem = 1
 	
 	width = sliderContainer.offsetWidth / countViewItem;
-	sliderContainer.style.cssText = `--width-item: ${width}px`;
-	slider.style.cssText = `--height-container: ${width * 4 / 3}px`;
+	
+	[...sliderItems].map(I => {
+		I.style.width = `${width}px`;
+	})
+
+	slider.style.height = `${width * 4 / 3}px`;
 }
 
 const shiftSlider = value => {
+	if (positionSlider + value > 0)
+		return sliderContainer.firstElementChild.style.transform = `translateX(${0}px)`;
 	
-	// if (positionSlider + value > 0 || positionSlider + value < countViewItem - maxPositionSlider)
-	// return;
-
-	if (positionSlider + value > 0) {
-		console.log('>0');
-		
-		return sliderContainer.firstElementChild.style.cssText = `--translate: translateX(${0}px)`;
-	}
-	
-	if(positionSlider + value < countViewItem - maxPositionSlider) {
-		console.log('< 0');
-		return sliderContainer.firstElementChild.style.cssText = `--translate: translateX(${width * (countViewItem - maxPositionSlider)}px)`;
-	}
+	if(positionSlider + value < countViewItem - maxPositionSlider)
+		return sliderContainer.firstElementChild.style.transform = `translateX(${width * (countViewItem - maxPositionSlider)}px)`;
 	
 	positionSlider = positionSlider + value;
-	// console.log('positionSlider', positionSlider);
 	transition = width * positionSlider
-	sliderContainer.firstElementChild.style.cssText = `--translate: translateX(${width * positionSlider}px)`;
+	sliderContainer.firstElementChild.style.transform = `translateX(${width * positionSlider}px)`;
 }
 
 const dragStart = event =>  {
@@ -63,15 +59,13 @@ const dragAction = event => {
 	event.stopPropagation();
 	posX2 = posInitial - parseInt(event.changedTouches[0].clientX);
 	posFinal = parseInt(event.changedTouches[0].clientX);
-
-	sliderContainer.firstElementChild.style.cssText = `--translate: translateX(${transition - posX2}px)`;
+	sliderContainer.firstElementChild.style.transform = `translateX(${transition - posX2}px)`;
 }
 
 const dragEnd = event => {
 	event.preventDefault();
 	event.stopPropagation();
-	// console.log('posInitial', posInitial);
-	// console.log('posFinal', posFinal);
+
 	if (posInitial - posFinal > 0) {
 		
 		touchValue = Math.round((((posInitial - posFinal) * 2) / width) * -1);
@@ -94,7 +88,7 @@ window.addEventListener('DOMContentLoaded', function() {
 	sliderContainer.firstElementChild.addEventListener('touchmove', dragAction, false);
 	sliderContainer.firstElementChild.addEventListener('touchend', dragEnd, false);
 
-	document.body.addEventListener('touchmove', function(e){ e.preventDefault(); }, {passive: false});
+	document.body.addEventListener('touchmove', function(e){ e.preventDefault(); }, false);
 });
 
 window.addEventListener('resize', setWidthItem);
