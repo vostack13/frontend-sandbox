@@ -1,0 +1,10 @@
+/* Common */
+@import 'common/layout';
+
+/* Components */
+@import 'components/slider';
+@import 'components/icon';
+@import 'components/buttons/buttons';
+
+/* Pages */
+@import 'pages/index';

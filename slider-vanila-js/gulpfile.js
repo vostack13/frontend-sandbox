@@ -9,17 +9,19 @@ const postcssNesting = require('postcss-nesting');
 const postcssImport = require('postcss-import');
 const postcssSelectorNot = require('postcss-selector-not');
 const postcssCustomProperties = require('postcss-custom-properties');
-const cssnano = require('cssnano');
 const autoprefixer = require('autoprefixer');
-// const sass = require('gulp-sass');
-// const rename = require('gulp-rename');
-// const sourcemaps = require('gulp-sourcemaps');
+const cssnano = require('cssnano');
+const rename = require('gulp-rename');
+const sourcemaps = require('gulp-sourcemaps');
 
 // scripts
 const uglify = require('gulp-uglify');
 const webpack = require('webpack-stream');
 const compiler = require('webpack');
 const webpackConfig = require('./webpack.config.js')
+
+//svg sprites
+const svgSprite = require('gulp-svg-sprite');
 
 const paths = {
 	root: './build',
@@ -31,13 +33,18 @@ const paths = {
 	},
 
 	styles: {
-		src: 'src/scss/**/*.css',
+		src: 'src/css/**/*.css',
 		dest: 'build/assets/css/'
 	},
 
 	scripts: {
 		src: 'src/js/**/*.js',
 		dest: 'build/assets/js/'
+	},
+
+	sprites: {
+		src: 'src/svg/**/*.svg',
+		dest: 'build/assets/img/'
 	},
 
 	images: {
@@ -53,16 +60,6 @@ function templates() {
 		.pipe(gulp.dest(paths.root));
 };
 
-// scss
-// function styles() {
-// 	return gulp.src('./src/scss/main.scss')
-// 		.pipe(sourcemaps.init())
-// 		.pipe(sass({outputStyle: 'compressed'}))
-// 		.pipe(sourcemaps.write())
-// 		.pipe(rename({suffix: '.min'}))
-// 		.pipe(gulp.dest(paths.styles.dest))
-// };
-
 // postcss
 function styles() {
 	const plugins = [
@@ -74,8 +71,11 @@ function styles() {
 		cssnano(),
 	];
 
-	return gulp.src('./src/scss/main.css')
+	return gulp.src('./src/css/main.css')
+		.pipe(sourcemaps.init())
 		.pipe(postcss(plugins, { parser: false }))
+		.pipe(sourcemaps.write())
+		.pipe(rename({suffix: '.min'}))
 		.pipe(gulp.dest(paths.styles.dest))
 };
 
@@ -93,6 +93,18 @@ function images() {
 		.pipe(gulp.dest(paths.images.dest))
 }
 
+function sprites() {
+	return gulp.src(paths.sprites.src)
+		.pipe(svgSprite({
+			mode: {
+				stack: {
+					sprite: "../sprite.svg"
+				}
+			},
+		}))
+		.pipe(gulp.dest(paths.sprites.dest))
+}
+
 // очистка
 function clean() {
 	return del(paths.root)
@@ -104,6 +116,7 @@ function watch() {
 	gulp.watch(paths.templates.src, templates)
 	gulp.watch(paths.scripts.src, scripts)
 	gulp.watch(paths.images.src, images)
+	gulp.watch(paths.sprites.src, sprites)
 }
 
 // следим за build и обновляем страницу в браузере
@@ -123,12 +136,13 @@ exports.templates = templates;
 exports.styles = styles;
 exports.clean = clean;
 exports.images = images;
+exports.sprites = sprites;
 exports.watch = watch;
 
 // режим разработки
 gulp.task('default', gulp.series(
 	clean,
-	gulp.parallel(templates, styles, scripts, images),
+	gulp.parallel(templates, styles, scripts, images, sprites),
 	gulp.parallel(watch, server)
 
 ))
@@ -136,5 +150,5 @@ gulp.task('default', gulp.series(
 // сборка проекта
 gulp.task('build', gulp.series(
 	clean,
-	gulp.parallel(templates, styles, scripts, images),
+	gulp.parallel(templates, styles, scripts, images, sprites),
 ))

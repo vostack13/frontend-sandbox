@@ -1,0 +1,13 @@
+.x-icon {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 18px;
+	height: 18px;
+	background-position: center;
+	background-repeat: no-repeat;
+	& > svg {
+		width: 16px;
+		height: 16px;
+	}
+}
