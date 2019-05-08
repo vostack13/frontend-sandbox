@@ -1,3 +1,7 @@
+:root {
+	/* --width-item: 10%; */
+}
+
 .general-slider {
 	width: 100%;
 	display: flex;
@@ -31,7 +35,7 @@
 				padding-left: 8px;
 				padding-right: 8px;
 				display: flex;
-				width: 25%;
+				width: 100%;
 				& > .content {
 					flex-grow: 1;
 					height: 100%;

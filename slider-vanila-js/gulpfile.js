@@ -6,6 +6,7 @@ const browserSync = require('browser-sync').create();
 //styles
 const postcss = require('gulp-postcss');
 const postcssNesting = require('postcss-nesting');
+const postcssImport = require('postcss-import');
 const postcssSelectorNot = require('postcss-selector-not');
 const postcssCustomProperties = require('postcss-custom-properties');
 const cssnano = require('cssnano');
@@ -30,7 +31,7 @@ const paths = {
 	},
 
 	styles: {
-		src: 'src/scss/**/*.scss',
+		src: 'src/scss/**/*.css',
 		dest: 'build/assets/css/'
 	},
 
@@ -65,6 +66,7 @@ function templates() {
 // postcss
 function styles() {
 	const plugins = [
+		postcssImport(),
 		postcssNesting(),
 		postcssSelectorNot(),
 		postcssCustomProperties(),

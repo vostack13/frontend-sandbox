@@ -32,7 +32,7 @@ const setWidthItem = () => {
 	[...sliderItems].map(I => {
 		I.style.width = `${width}px`;
 	})
-
+	
 	slider.style.height = `${width * 4 / 3}px`;
 }
 
