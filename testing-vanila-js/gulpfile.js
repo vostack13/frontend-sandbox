@@ -50,7 +50,12 @@ const paths = {
 	images: {
 		src: 'src/img/**/*.*',
 		dest: 'build/assets/img/'
-	}
+	},
+
+	helpers: {
+		src: 'src/helpers/**/*.*',
+		dest: 'build/helpers/'
+	},
 }
 
 // pug
@@ -93,6 +98,12 @@ function images() {
 		.pipe(gulp.dest(paths.images.dest))
 }
 
+// просто вспомогательные файлы
+function helpers() {
+	return gulp.src(paths.helpers.src)
+		.pipe(gulp.dest(paths.helpers.dest))
+}
+
 function sprites() {
 	return gulp.src(paths.sprites.src)
 		.pipe(svgSprite({
@@ -117,6 +128,7 @@ function watch() {
 	gulp.watch(paths.scripts.src, scripts)
 	gulp.watch(paths.images.src, images)
 	gulp.watch(paths.sprites.src, sprites)
+	gulp.watch(paths.helpers.src, helpers)
 }
 
 // следим за build и обновляем страницу в браузере
@@ -137,12 +149,13 @@ exports.styles = styles;
 exports.clean = clean;
 exports.images = images;
 exports.sprites = sprites;
+exports.helpers = helpers;
 exports.watch = watch;
 
 // режим разработки
 gulp.task('default', gulp.series(
 	clean,
-	gulp.parallel(templates, styles, scripts, images, sprites),
+	gulp.parallel(templates, styles, scripts, images, sprites, helpers),
 	gulp.parallel(watch, server)
 
 ))

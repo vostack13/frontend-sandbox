@@ -1,0 +1,33 @@
+data = {
+	"questions": [
+		{
+			"_id": "0001",
+			"questions_text": "Текст вопроса 1",
+			"questions_picture": "helpers/0001_picture",
+
+			"answers": [
+				{"_id": "90011", "text": "Ответ 1"},
+				{"_id": "90012", "text": "Ответ 2"},
+				{"_id": "90013", "text": "Ответ 3"},
+				{"_id": "90014", "text": "Ответ 4"}
+			]
+		},
+
+		{
+			"_id": "0002",
+			"questions_text": "Текст вопроса 2",
+			"questions_picture": "helpers/0001_picture",
+
+			"answers": [
+				{"_id": "90021", "text": "Ответ 1"},
+				{"_id": "90022", "text": "Ответ 2"},
+				{"_id": "90023", "text": "Ответ 3"},
+			]
+		}
+	],
+
+	"answers": [
+		{"question": "0001", "answer": "90012"},
+		{"question": "0002", "answer": "90023"}
+	]
+}

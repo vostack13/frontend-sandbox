@@ -14,6 +14,21 @@ html(lang="ru")
 			header.header.header-page__testing
 				h1.title Тестирование
 			main.main-page.main-page__testing
-				.content Список вопросов
+				.content
+					ul.list
+						//- li.item
+						//- 	h2.title Вопрос 1
+						//- 	.questions-content
+						//- 		p.text
+						//- 	ul.answers__list
+						//- 		li.item
+						//- 			input#001(type="checkbox")
+						//- 			label(for="001") Ответ 1
+						//- 		li.item
+						//- 			input#002(type="checkbox")
+						//- 			label(for="002") Ответ 2
+
+
 				a.btn.btn-link(href="/complete.html") Завершить тестирование
-		script(src="assets/js/main.js")
+		script(type="text/javascript" src="helpers/data.json")
+		script( type="text/javascript" src="assets/js/main.js")
