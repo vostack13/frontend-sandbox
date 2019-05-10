@@ -11,9 +11,13 @@ html(lang="ru")
 		title #{title}
 	body
 		.wrapper
-			main.main-page.main-page__index
+			main.main-page.main-page__complete
 				section.section
-					h1.title Тестирование
-					p.subtitle Чтобы повторить тестирование, нажмите
-						a.btn.btn-link(href="/frontend-sandbox/testing-vanila-js/build/") Повторить тестирование
-		script(src="assets/js/main.js")
+					h1.title Тестирование завершено
+					.content
+						p.description правильных ответов
+					p.subtitle Чтобы повторить тестирование, нажмите 
+						//- a.btn.btn-link(href="/frontend-sandbox/testing-vanila-js/build/") Повторить тестирование
+						a.link(href="/") Повторить тестирование
+		script(type="text/javascript" src="helpers/data.json")
+		script(type="text/javascript" src="assets/js/main.js")

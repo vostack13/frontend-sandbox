@@ -1,0 +1,52 @@
+.main-page__testing {
+	margin-left: auto;
+	margin-right: auto;
+	padding: 80px 16px;
+	max-width: 1200px;
+	min-width: 320px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	& > .title {
+		font-size: 32px;
+		font-weight: 700;
+	}
+	& > .content {
+		margin-top: 16px;
+		margin-bottom: 56px;
+		& > .list {
+			& > .item {
+				padding-top: 56px;
+				padding-bottom: 32px;
+				box-shadow: 0 -1px hsl(0, 0%, 76%) inset;
+				& > .title {
+					font-size: 16px;
+					font-weight: 500px;
+				}
+				& > .content {
+					margin-top: 24px;
+					& > .text {
+						margin-top: 12px;
+					}
+				}
+				& > .answers__list {
+					margin-top: 24px;
+					& > .item {
+						display: flex;
+						align-items: center;
+						& > label {
+							margin-left: 8px;
+						}
+					}
+				}
+			}
+		}
+	}
+	& > .message-error {
+		color: hsl(0, 91%, 45%);
+	}
+	& > .btn-link {
+		margin-top: 24px;
+		width: fit-content;
+	}
+}

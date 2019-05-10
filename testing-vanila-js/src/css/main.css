@@ -7,3 +7,5 @@
 
 /* Pages */
 @import 'pages/index';
+@import 'pages/testing';
+@import 'pages/complete';

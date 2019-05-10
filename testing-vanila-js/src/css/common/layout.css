@@ -1,11 +1,16 @@
 :root {
 	height: 100%;
-	body {
+	& > body {
 		position: relative;
 		height: 100%;
 		& > .wrapper {
 			display: flex;
 			flex-direction: column;
+			height: 100%;
+			font-family: 'Roboto';
+			font-weight: 400;
+			line-height: 1.42em;
+			color: hsl(225, 6%, 13%);
 		}
 	}
 }
@@ -21,4 +26,8 @@ html, body, ul, p, h1, h2, h3, h4, h5 {
 
 ul {
 	list-style: none;
+}
+
+a {
+	text-decoration: none;
 }

@@ -1,4 +1,22 @@
 .x-button {
+	flex-shrink: 0;
 	border: none;
 	outline: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 4px;
+	height: 36px;
+	min-width: 80px;
+	padding: 0 16px;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 16px;
+	color: hsl(0, 0%, 100%);
+	background-color: hsl(214, 82%, 51%);
+	transition-duration: .3s;
+	transition-property: background-color;
+	&:hover {
+		background-color: hsl(214, 82%, 31%);
+	}
 }
