@@ -110,7 +110,7 @@ if(questionsBtnLink)
 	console.log(window.location);
 	console.log(window.location.pathname.split("/").slice(-1));
 	
-if(window.location.pathname.split("/").slice(-1) === ['complete.html']) {
+if(window.location.pathname.split("/").slice(-1)[0] === 'complete.html') {
 	const resultUserAnswers = JSON.parse(localStorage.getItem('user_answers')) || [];
 
 	const countRightAnswers = resultUserAnswers.reduce((result, item) => {
