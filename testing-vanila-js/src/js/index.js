@@ -106,9 +106,6 @@ if(questionsBtnLink)
 		localStorage.setItem('user_answers', JSON.stringify(userAnswers))
 		window.location.href = '/frontend-sandbox/testing-vanila-js/build/complete.html';
 	});
-
-	console.log(window.location);
-	console.log(window.location.pathname.split("/").slice(-1));
 	
 if(window.location.pathname.split("/").slice(-1)[0] === 'complete.html') {
 	const resultUserAnswers = JSON.parse(localStorage.getItem('user_answers')) || [];
@@ -145,8 +142,5 @@ if(window.location.pathname.split("/").slice(-1)[0] === 'complete.html') {
 
 	resultContent.insertBefore(resultInfo, resultContent.firstElementChild);
 	resultContent.insertBefore(resultTitle, resultContent.firstElementChild);
-
-	console.log(countRightAnswers);
-
 }
 
