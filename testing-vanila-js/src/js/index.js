@@ -104,7 +104,7 @@ if(questionsBtnLink)
 			
 
 		localStorage.setItem('user_answers', JSON.stringify(userAnswers))
-		window.location.href = '/complete.html';
+		window.location.href = '/frontend-sandbox/testing-vanila-js/build/complete.html';
 	});
 
 if(window.location.pathname === '/complete.html') {
