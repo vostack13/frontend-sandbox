@@ -107,7 +107,10 @@ if(questionsBtnLink)
 		window.location.href = '/frontend-sandbox/testing-vanila-js/build/complete.html';
 	});
 
-if(window.location.pathname === '/complete.html') {
+	console.log(window.location);
+	console.log(window);
+	
+if(window.location.pathname.split("/").slice(-1) === '/complete.html') {
 	const resultUserAnswers = JSON.parse(localStorage.getItem('user_answers')) || [];
 
 	const countRightAnswers = resultUserAnswers.reduce((result, item) => {
