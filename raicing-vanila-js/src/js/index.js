@@ -1,7 +1,7 @@
 require('@babel/polyfill');
 import _ from "lodash";
 
-const apiUrl = 'https://we.pena-app.ru';
+const apiUrl = 'http://we.pena-app.ru';
 let stateApp = {
 	timeRacing: 0,
 	cars: [],
@@ -12,7 +12,7 @@ const getCars = async () => {
 		setTimeout(async() => {
 			const data = await fetch(`${apiUrl}/rcrtng/api/cars/`, {
 				method: 'GET',
-				mode: 'cors'
+				// mode: 'cors'
 			}).then(res => res.json());
 
 			resolve(data);
