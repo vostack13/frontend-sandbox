@@ -63,11 +63,13 @@ const makeCar = (car, configImg, trackWidth) => {
 	return carContainer;
 };
 
-const renderApp = async (container, loading) => {
+const renderApp = async (container) => {
 	const {config, items} = await getCars();
 	const assetsUrl = config.image_path;
 	
-	container.removeChild(loading);
+	const loading = document.getElementById('loading-app');
+	loading.classList.add('_is-hidden');
+	// container.removeChild(loading);
 	
 	const btnStart = document.getElementById('btn-start');
 	const start = document.createElement('div');
@@ -137,15 +139,9 @@ const makeResultItem = (rank, name, time) => {
 
 window.addEventListener('load', () => {
 	const container = document.getElementById('root');
-	const loading = document.createElement('div');
 	const btnReload = document.getElementById('btn-reload');
 
 	btnReload.addEventListener('click', () => window.location.reload());
 
-	loading.className = 'loading';
-	loading.innerText = 'Загрузка...';
-
-	container.appendChild(loading);
-
-	renderApp(container, loading);
+	renderApp(container);
 })
