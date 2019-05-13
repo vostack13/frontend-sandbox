@@ -69,7 +69,6 @@ const renderApp = async (container) => {
 	
 	const loading = document.getElementById('loading-app');
 	loading.classList.add('_is-hidden');
-	// container.removeChild(loading);
 	
 	const btnStart = document.getElementById('btn-start');
 	const start = document.createElement('div');
