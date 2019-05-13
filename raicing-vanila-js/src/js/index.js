@@ -1,24 +1,27 @@
 require('@babel/polyfill');
 
 const getCars = async () => {
-	setTimeout(async() => {
-		const data = await fetch('http://we.pena-app.ru/rcrtng/api/cars/', {
-			method: 'GET',
-			mode: 'cors'
-		}).then(res => res.json());
-
-		console.log(data);
-	}, 2000);
+	return new Promise((resolve, reject) => {
+		setTimeout(async() => {
+			data = await fetch('http://we.pena-app.ru/rcrtng/api/cars/', {
+				method: 'GET',
+				mode: 'cors'
+			}).then(res => res.json());
+	
+			// console.log(data);
+			resolve(data);
+		}, 2000);
+	});
 };
 
-const makeCar = imageCar => {
+const makeCar = (car, configImg) => {
 	const carContainer = document.createElement('div');
 	const carPicture = document.createElement('img');
 
 	carContainer.className = 'car__container';
 	carPicture.className = 'car__picture';
-	
-	carPicture.src = 'imageCar';
+
+	carPicture.src = `${configImg.image_path}/${car.image}.${configImg.image_ext}`;
 
 	carContainer.appendChild(carPicture);
 
@@ -26,11 +29,15 @@ const makeCar = imageCar => {
 };
 
 const renderApp = async (container, loading) => {
-	getCars();
-	
+	const {config, items} = await getCars();
+
+	const assetsUrl = config.image_path
+
+	console.log(items);
+	console.log(config);
 	console.log(container);
-	
-	[1].forEach(I => container.appendChild(makeCar()));
+
+	items.forEach(car => container.appendChild(makeCar(car, config)));
 }
 
 window.addEventListener('load', () => {
