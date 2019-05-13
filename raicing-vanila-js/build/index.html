@@ -11,7 +11,27 @@
   <body>
     <div class="wrapper">
       <main class="main-page main-page__index">
+        <header class="header">
+          <h1 class="title">Гонки</h1>
+          <button id="btn-start">Старт</button>
+        </header>
         <section class="app" id="root"></section>
+        <div class="popup" id="popup">
+          <div class="container">
+            <h2 class="title">Результат гонки</h2>
+            <div class="result">
+              <div class="header">
+                <div class="caption">Место</div>
+                <div class="caption">Имя</div>
+                <div class="caption">Время</div>
+              </div>
+              <ul class="result__list" id="result__list"></ul>
+            </div>
+            <div class="actions">
+              <button id="btn-reload">Начать заново</button>
+            </div>
+          </div>
+        </div>
       </main>
     </div>
     <script type="text/javascript" src="assets/js/main.js"></script>

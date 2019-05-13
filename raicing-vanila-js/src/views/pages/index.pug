@@ -12,5 +12,20 @@ html(lang="ru")
 	body
 		.wrapper
 			main.main-page.main-page__index
+				header.header
+					h1.title Гонки
+					button#btn-start Старт
 				section.app#root
+				.popup#popup
+					.container
+						h2.title Результат гонки
+						.result
+							.header
+								.caption Место
+								.caption Имя
+								.caption Время
+							ul.result__list#result__list
+						.actions
+							button#btn-reload Начать заново
+
 		script(type="text/javascript" src="assets/js/main.js")
