@@ -1,7 +1,7 @@
 require('@babel/polyfill');
 import _ from "lodash";
 
-const apiUrl = 'http://we.pena-app.ru';
+const apiUrl = 'https://we.pena-app.ru';
 let stateApp = {
 	timeRacing: 0,
 	cars: [],
